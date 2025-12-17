@@ -1,20 +1,15 @@
 import React from "react";
 import "./Cart.css"; // Make sure this path matches your folder structure
 
-import Footer from "../../components/layout/footer";
-import CartItem from "../../components/CartItem/CartItem";
-import NavHeader from "../../components/layout/cartHeader";
+
+import Cartdisplay from "../../components/cartdisplay";
+import NullMessage from "../../components/NullMessage";
 
 const Cart = () => {
-
-  return (<div>
-  <NavHeader/>
-   
-  <CartItem/>
-
-  <Footer/>
-    </div>
-  );
+  const token = localStorage.getItem("auth-token");
+  return <>
+  {token ? <Cartdisplay /> : <NullMessage/>}
+  </>;
 };
 
 export default Cart;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -11,14 +11,20 @@ import { shopcontext } from '../../store/context';
 
 
 const Header = () => {
-    const [nav , setnav] = useState(false);
-    //scroll
+  const [nav , setnav] = useState(false);
+  const [totalItem,setTotalItem] = useState(0)
+   const {getTotalCartItem,cartItem} = useContext(shopcontext)
+  
+  useEffect(async()=>{
+    let total = await getTotalCartItem()
+    setTotalItem(total)
+  },[cartItem])
+
   const changeValueOnScroll = ()=>{
     const scrollValue = document?.documentElement?.scrollTop;
     scrollValue > 100 ? setnav(true) : setnav(false)
   }
   window.addEventListener("scroll",changeValueOnScroll)
-  const {getTotalCartItem} = useContext(shopcontext)
   return (
     <header>
       <Navbar collapseOnSelect expand="lg" className={`${nav === true ? "sticky" : " "}`}>
@@ -43,7 +49,7 @@ const Header = () => {
               }}>Logout</button></Link></p></Nav.Link>:<Nav.Link as={Link} ><p><Link to="/login"><button className='login'>Login</button></Link></p></Nav.Link>}
               <Nav.Link as={Link} ><Link to='/cart'><div className='cart'>
                 <i class="bi bi-bag fs-5"></i>
-                <em className='roundpoint'>{getTotalCartItem()}</em>    
+                <em className='roundpoint'>{totalItem}</em>    
               </div>
               </Link>
               </Nav.Link>

@@ -107,6 +107,7 @@ const Section3 = () => {
         </Row>
         <Row>
           {mockData.map((cardData, index) => (
+            
             <Cards
               key={index}
               id={cardData.id}
@@ -116,7 +117,7 @@ const Section3 = () => {
               paragraph={cardData.discription}
               price={cardData.price}
               renderRatingIcons={renderRatingIcons}
-                 
+              _id = {cardData._id}
             />
           ))}
         </Row>

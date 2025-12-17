@@ -5,11 +5,11 @@ import { Link } from "react-router-dom";
 import { shopcontext } from "../../store/context";
 
 
-const Cards = ({ image, title, paragraph ,price,renderRatingIcons,ratihg,id}) => {
+const Cards = ({ image, title, paragraph ,price,renderRatingIcons,ratihg,id,_id}) => {
   const {addToCart} = useContext(shopcontext)
-  const handleclick=({id})=>{
+  const handleclick=(id)=>{
     addToCart(id)
-
+    console.log(id)
   }
   return (
     <Col sm={6} lg={4} xl={3} className="mb-4">
@@ -32,7 +32,7 @@ const Cards = ({ image, title, paragraph ,price,renderRatingIcons,ratihg,id}) =>
           <div className="menu_price">
             <h5 className="mb-0">${price}</h5>
           </div>
-          <div className="add_to_card" onClick={()=>handleclick({id})}>
+          <div className="add_to_card" onClick={()=>handleclick(_id)}>
             <Link to =  '#'>
               <i class="bi bi-bag me-2"></i>
               Add To Cart

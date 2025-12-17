@@ -10,7 +10,7 @@ const AuthForm = () => {
 
 const handleLogin = async(e) => {
       e.preventDefault()
-      let res = await axios.post('http://localhost:3000/login',loginData);
+      let res = await axios.post('http://localhost:3000/api/login',loginData);
       if (res.data.success === true) {
       localStorage.setItem('auth-token',res.data.token);
        window.location.replace('/')
@@ -24,7 +24,7 @@ const handleSignup = async (e) => {
   e.preventDefault(); 
 
   try {
-    let res = await axios.post('http://localhost:3000/signup', signupData)        
+    let res = await axios.post('http://localhost:3000/api/signup', signupData)        
     alert(res.data.message);
 
     if (res.data.success === true) {

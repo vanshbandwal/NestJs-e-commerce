@@ -25,10 +25,10 @@ const AddProduct = () => {
         let formdata = new FormData()
         formdata.append('product', image)
         console.log(formdata)
-        let response = await axios.post('http://localhost:3000/upload', formdata)
+        let response = await axios.post('http://localhost:3000/api/upload', formdata)
         if (response.data.success === true) {
             product.image = response.data.image_url;
-            let d = await axios.post('http://localhost:3000/addproduct', product)
+            let d = await axios.post('http://localhost:3000/api/addproduct', product)
             if (d.data.success === true) {
                 alert(d.data.message)
                 setproductDetails({

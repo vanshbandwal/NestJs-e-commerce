@@ -6,14 +6,14 @@ const ListProduct = () => {
   const [allproduct, setAllproduct] = useState([])
     
   const fetchapp = async()=>{
-    let res = await axios.get('http://localhost:3000/getproducts')
+    let res = await axios.get('http://localhost:3000/api/getproducts')
     setAllproduct(res.data.product)
   }
   useEffect(()=>{
     fetchapp()
   },[allproduct])
   const removeproduct = async(id)=>{
-    let res = await axios.post('http://localhost:3000/removedproduct',{id:id})
+    let res = await axios.post('http://localhost:3000/api/removedproduct',{id:id})
     await fetchapp()
   }
   return (
@@ -35,7 +35,7 @@ const ListProduct = () => {
               <p>{product.discription}</p>
               <p>{product.name}</p>
               <p>${product.price}</p>
-              <img src={cross_icon} alt="" className='listproduct-remove-icon' onClick={()=>{removeproduct(product.id)}}/>
+              <img src={cross_icon} alt="" className='listproduct-remove-icon' onClick={()=>{removeproduct(product._id)}}/>
             </div>
             <hr />
           </>

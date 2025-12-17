@@ -1,0 +1,9 @@
+.cartMessage{
+   height: 500px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-weight: 700;
+   font-size: 20px;
+   color: rgb(126, 51, 51);
+}
